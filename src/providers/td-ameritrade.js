@@ -8,10 +8,11 @@ export default function TDAmeritrade(options) {
     accessTokenUrl: "https://api.tdameritrade.com/v1/oauth2/token",
     requestTokenUrl: "https://api.tdameritrade.com/v1/oauth2/token",
     authorizationUrl: `https://auth.tdameritrade.com/auth?response_type=code`,
-    profileUrl: `https://api.tdameritrade.com/v1/accounts`,
-    profile(accounts) {
+    profileUrl: `https://api.tdameritrade.com/v1/userprincipals`,
+    profile(profile) {
       return {
-        id: accounts[0].securitiesAccount.accountId,
+        ...profile,
+        id: profile.userId,
       }
     },
     ...options,
